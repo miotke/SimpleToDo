@@ -27,7 +27,7 @@ class ToDoListViewController: UIViewController {
         registerNib()
     }
     
-    func setupNavigationController() {
+    private func setupNavigationController() {
         let addToDoItemButtonImage = UIImage(systemName: "plus")
         navigationItem.title = "Simple ToDo"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: addToDoItemButtonImage, style: .plain, target: self, action: #selector(addToDoItem))
@@ -37,7 +37,7 @@ class ToDoListViewController: UIViewController {
         performSegue(withIdentifier: reuseIdentifiers.toAddToDoItemVC.rawValue, sender: self)
     }
     
-    func registerNib() {
+    private func registerNib() {
         let STTableViewCell = UINib(nibName: "STTableViewCell", bundle: nil)
         tableView.register(STTableViewCell, forCellReuseIdentifier: reuseIdentifiers.tableViewCell.rawValue)
     }

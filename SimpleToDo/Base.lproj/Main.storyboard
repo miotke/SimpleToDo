@@ -47,7 +47,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <connections>
-                                <segue destination="Fcm-OV-GCO" kind="showDetail" identifier="toAddToDoItemVC" id="Esk-7Z-8Ru"/>
+                                <segue destination="Ki1-my-xYc" kind="presentation" identifier="toAddToDoItemVC" id="Esk-7Z-8Ru"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -69,10 +69,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="sgM-fz-O2F"/>
                     </view>
+                    <navigationItem key="navigationItem" id="nuY-pK-ctu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTq-bj-M0o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1883" y="123"/>
+            <point key="canvasLocation" x="2741" y="123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3AN-vV-EwH">
@@ -91,6 +92,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="84k-Qe-wF9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="122.54464285714285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XxV-Do-PPt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ki1-my-xYc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="xWW-4Y-heJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Fcm-OV-GCO" kind="relationship" relationship="rootViewController" id="SWF-GV-ELH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Go-tb-R25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1897" y="123"/>
         </scene>
     </scenes>
 </document>
