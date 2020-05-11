@@ -2,7 +2,7 @@
 //  TodoItem+CoreDataClass.swift
 //  SimpleToDo
 //
-//  Created by Andrew Miotke on 5/10/20.
+//  Created by Andrew Miotke on 5/11/20.
 //  Copyright © 2020 andrewmiotke. All rights reserved.
 //
 //
