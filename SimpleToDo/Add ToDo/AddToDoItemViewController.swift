@@ -10,7 +10,7 @@ import UIKit
 
 class AddToDoItemViewController: UIViewController {
     
-    var dateOfTask: String = "qqeqwewqe"
+    var dateOfTask: String = ""
     let dateLabel = UILabel()
     let taskTitleTextField = UITextField()
     let taskCompleteSwitch = UISwitch()
