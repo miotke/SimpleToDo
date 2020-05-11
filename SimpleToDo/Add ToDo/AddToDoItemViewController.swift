@@ -40,12 +40,14 @@ class AddToDoItemViewController: UIViewController {
     
     func saveTask() {
         let task = TodoItem(context: container.viewContext)
+        let formatter = DateFormatter()
         
         task.title = self.taskTitleTextField.text!
-        task.date = "04/11/2020"
+        task.date = formatter.date(from: "MMM d, yyyy") ?? Date()
         task.taskCompleted = taskCompleteSwitch.isOn
         
         self.saveContext()
+        print(task.date)
     }
     
     func saveContext() {
