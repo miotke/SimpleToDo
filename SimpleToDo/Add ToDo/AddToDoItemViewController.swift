@@ -43,7 +43,7 @@ class AddToDoItemViewController: UIViewController {
     private func configureStaticUI() {
         // Placeholder method. Eventually the following strings will be moved to an initilizer
         taskCompleteLabel.text = "Task complete: "
-        taskTitleTextField.placeholder = "Task title"
+        taskTitleTextField.placeholder = "Task"
         dateLabel.text = "Date of task: \(self.dateOfTask)"
     }
     
@@ -73,14 +73,20 @@ class AddToDoItemViewController: UIViewController {
         view.addSubview(taskCompleteStackView)
         taskCompleteStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        let taskDetailsStackView = UIStackView(arrangedSubviews: [dateLabel, taskTitleTextField, taskCompleteStackView])
+        let taskDetailsStackView = UIStackView(arrangedSubviews: [taskTitleTextField, dateLabel, taskCompleteStackView])
         taskDetailsStackView.axis = .vertical
+        taskDetailsStackView.distribution = .fillEqually
+        taskDetailsStackView.spacing = 5
         view.addSubview(taskDetailsStackView)
         taskDetailsStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            taskDetailsStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            taskDetailsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            taskDetailsStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            taskDetailsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            taskDetailsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            taskDetailsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+//            taskDetailsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            taskDetailsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
         ])
     }
 }
