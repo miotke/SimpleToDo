@@ -17,6 +17,8 @@ class ToDoListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var taskComplete = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +58,13 @@ extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indexPath) as? STTableViewCell
         cell?.todoListTextLabel.text = "Finish this app"
-        cell?.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
+
+        switch taskComplete {
+        case true:
+            cell?.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
+        case false:
+            cell?.todoItemStatus.image = UIImage(systemName: "x.circle")
+        }
 
         return cell!
     }

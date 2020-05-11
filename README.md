@@ -1,9 +1,9 @@
 # SimpleToDo
 `portfolio`
 
-A todo list iOS app written in Swift and using CoreData. 
+A todo list iOS app written in Swift and using CoreData.
 
-This is a portfolio project and is not deployed on the app store. This project is here to demonstrate skill and ability in iOS programming abilities. 
+This is a portfolio project and is not deployed on the app store. This project is here to demonstrate skill and ability in iOS programming abilities.
 
 ## Functionality
 * Add todo items
@@ -17,8 +17,9 @@ This is a portfolio project and is not deployed on the app store. This project i
 * Core Data
 * UIKit
 * Storyboard & programmatic UI
+* SF Symbols
 
 ## Usage
 * Clone this repo and open the project directory
 * Open `SimpleToDo.xcodeproj` and build+run in Xcode
-* Targets iOS 13+ 
+* Targets iOS 13+
