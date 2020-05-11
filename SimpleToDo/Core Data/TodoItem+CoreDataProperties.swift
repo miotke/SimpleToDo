@@ -2,7 +2,7 @@
 //  TodoItem+CoreDataProperties.swift
 //  SimpleToDo
 //
-//  Created by Andrew Miotke on 5/10/20.
+//  Created by Andrew Miotke on 5/11/20.
 //  Copyright © 2020 andrewmiotke. All rights reserved.
 //
 //
@@ -17,9 +17,9 @@ extension TodoItem {
         return NSFetchRequest<TodoItem>(entityName: "TodoItem")
     }
 
-    @NSManaged public var taskCompleted: Bool
-    @NSManaged public var date: Date?
+    @NSManaged public var date: Date
     @NSManaged public var details: String?
-    @NSManaged public var title: String?
+    @NSManaged public var taskCompleted: Bool
+    @NSManaged public var title: String
 
 }

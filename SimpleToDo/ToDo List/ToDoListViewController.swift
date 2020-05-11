@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoListViewController: UIViewController {
     
@@ -18,6 +19,8 @@ class ToDoListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var taskComplete = false
+    var tasks: [TodoItem] = []
+    var container: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,8 @@ class ToDoListViewController: UIViewController {
         
         setupNavigationController()
         registerNib()
+        connectPersistentContainer()
+        loadSavedData()
     }
     
     private func setupNavigationController() {
@@ -43,23 +48,47 @@ class ToDoListViewController: UIViewController {
         let STTableViewCell = UINib(nibName: "STTableViewCell", bundle: nil)
         tableView.register(STTableViewCell, forCellReuseIdentifier: reuseIdentifiers.tableViewCell.rawValue)
     }
+    
+    // MARK: Core Data stuff
+    func connectPersistentContainer() {
+        container = NSPersistentContainer(name: "SimpleToDo")
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func loadSavedData() {
+        let request = TodoItem.createFetchRequest()
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [sort]
+        
+        do {
+            tasks = try container.viewContext.fetch(request)
+            tableView.reloadData()
+        } catch {
+            print("Fetch failed: \(error.localizedDescription)")
+        }
+    }
 }
 
-
+// MARK: Extension - Table View
 extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indexPath) as? STTableViewCell
-        cell?.todoListTextLabel.text = "Finish this app"
+        let task = tasks[indexPath.row]
 
-        switch taskComplete {
+        cell?.todoListTextLabel.text = task.title
+        switch task.taskCompleted {
         case true:
             cell?.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
         case false:
