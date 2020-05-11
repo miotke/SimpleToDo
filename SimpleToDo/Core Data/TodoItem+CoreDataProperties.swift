@@ -18,8 +18,8 @@ extension TodoItem {
     }
 
     @NSManaged public var taskCompleted: Bool
-    @NSManaged public var date: Date?
+    @NSManaged public var date: String
     @NSManaged public var details: String?
-    @NSManaged public var title: String?
+    @NSManaged public var title: String
 
 }

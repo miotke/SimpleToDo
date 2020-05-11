@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddToDoItemViewController: UIViewController {
     
@@ -15,14 +16,46 @@ class AddToDoItemViewController: UIViewController {
     let taskTitleTextField = UITextField()
     let taskCompleteSwitch = UISwitch()
     let taskCompleteLabel = UILabel()
+    
+    var container: NSPersistentContainer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         formatDate()
+        loadPersistentContainer()
         setupNavigationController()
         addSubviews()
         configureUI()
         configureStaticUI()
+    }
+    
+    func loadPersistentContainer() {
+        container = NSPersistentContainer(name: "SimpleToDo")
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error {
+                print("Unresolved error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func saveTask() {
+        let task = TodoItem(context: container.viewContext)
+        
+        task.title = self.taskTitleTextField.text!
+        task.date = "04/11/2020"
+        task.taskCompleted = taskCompleteSwitch.isOn
+        
+        self.saveContext()
+    }
+    
+    func saveContext() {
+        if container.viewContext.hasChanges {
+            do {
+                try container.viewContext.save()
+            } catch {
+                print("🚨 error \(error.localizedDescription)")
+            }
+        }
     }
     
     private func setupNavigationController() {
@@ -33,6 +66,7 @@ class AddToDoItemViewController: UIViewController {
     }
     
     @objc func saveItem() {
+        saveTask()
         self.dismiss(animated: true)
     }
     
@@ -81,11 +115,8 @@ class AddToDoItemViewController: UIViewController {
         taskDetailsStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-//            taskDetailsStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//            taskDetailsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             taskDetailsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             taskDetailsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            taskDetailsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             taskDetailsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
         ])
     }
