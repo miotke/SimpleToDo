@@ -10,18 +10,19 @@ import UIKit
 
 class AddToDoItemViewController: UIViewController {
     
+    var dateOfTask: String = "qqeqwewqe"
+    let dateLabel = UILabel()
     let taskTitleTextField = UITextField()
-    let taskDetailsTextView = UITextView()
     let taskCompleteSwitch = UISwitch()
     let taskCompleteLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatDate()
         setupNavigationController()
         addSubviews()
         configureUI()
-        
-        taskCompleteLabel.text = "Task complete: "
+        configureStaticUI()
     }
     
     private func setupNavigationController() {
@@ -39,29 +40,47 @@ class AddToDoItemViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    func addSubviews() {
+    private func configureStaticUI() {
+        // Placeholder method. Eventually the following strings will be moved to an initilizer
+        taskCompleteLabel.text = "Task complete: "
+        taskTitleTextField.placeholder = "Task title"
+        dateLabel.text = "Date of task: \(self.dateOfTask)"
+    }
+    
+    func formatDate() {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        
+        return self.dateOfTask = dateFormatter.string(from: date)
+    }
+    
+    private func addSubviews() {
+        view.addSubview(dateLabel)
         view.addSubview(taskTitleTextField)
-        view.addSubview(taskDetailsTextView)
         view.addSubview(taskCompleteSwitch)
         view.addSubview(taskCompleteLabel)
         
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         taskTitleTextField.translatesAutoresizingMaskIntoConstraints = false
-        taskDetailsTextView.translatesAutoresizingMaskIntoConstraints = false
         taskCompleteSwitch.translatesAutoresizingMaskIntoConstraints = false
         taskCompleteLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configureUI() {
+    private func configureUI() {
         let taskCompleteStackView = UIStackView(arrangedSubviews: [taskCompleteLabel, taskCompleteSwitch])
         taskCompleteStackView.axis = .horizontal
-        
         view.addSubview(taskCompleteStackView)
         taskCompleteStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            taskCompleteStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            taskCompleteStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        let taskDetailsStackView = UIStackView(arrangedSubviews: [dateLabel, taskTitleTextField, taskCompleteStackView])
+        taskDetailsStackView.axis = .vertical
+        view.addSubview(taskDetailsStackView)
+        taskDetailsStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        NSLayoutConstraint.activate([
+            taskDetailsStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            taskDetailsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
 }
