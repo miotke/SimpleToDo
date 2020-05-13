@@ -1,5 +1,5 @@
 # SimpleToDo
-`portfolio`
+`Not complete` `portfolio`
 
 A todo list iOS app written in Swift and using CoreData.
 
@@ -18,6 +18,7 @@ This is a portfolio project and is not deployed on the app store. This project i
 * UIKit
 * Storyboard & programmatic UI
 * SF Symbols
+* Diffable Data Sources
 
 ### Usage
 * Clone this repo and open the project directory
