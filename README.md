@@ -3,7 +3,7 @@
 
 A todo list iOS app written in Swift and using CoreData.
 
-This is a portfolio project and is not deployed on the app store. This project is here to demonstrate skill and ability in iOS programming abilities.
+This is a portfolio project and is not deployed on the app store. This project is here to demonstrate skill and ability in building apps for iOS.
 
 ### Functionality
 * Add todo items
