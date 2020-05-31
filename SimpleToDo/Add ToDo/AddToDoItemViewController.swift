@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddToDoItemViewController: UIViewController {
+class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     var dateOfTask: String = ""
     let dateLabel = UILabel()
@@ -76,6 +76,7 @@ class AddToDoItemViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    // MARK: UI Setup
     private func configureStaticUI() {
         // Placeholder method. Eventually the following strings will be moved to an initilizer
         taskCompleteLabel.text = "Task complete: "
