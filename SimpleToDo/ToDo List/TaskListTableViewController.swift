@@ -28,7 +28,6 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         super.viewDidLoad()
 
         setupNavigationController()
-        setupFetchedResultsController()
         setupCoreData()
         registerNib()
         loadSavedData()
@@ -60,21 +59,6 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         }
     }
     
-    func loadSavedData() {
-        let request = TodoItem.createFetchRequest()
-        let sort = NSSortDescriptor(key: "date", ascending: false)
-        request.sortDescriptors = [sort]
-
-        do {
-            try fetchedResultsController.performFetch()
-            setupSnapshot()
-            print("loadSavedData \(tasks.count)")
-            
-        } catch {
-            print("Fetch failed: \(error.localizedDescription)")
-        }
-    }
-    
     func setupCoreData() {
         container.loadPersistentStores { storeDescription, error in
             self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -84,13 +68,12 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         }
     }
     
-    func setupFetchedResultsController() {
+    func loadSavedData() {
         let request = TodoItem.createFetchRequest()
         let sort = NSSortDescriptor(key: "date", ascending: false)
-
+        
         request.fetchBatchSize = tasks.count
         request.sortDescriptors = [sort]
-
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
@@ -98,9 +81,10 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         do {
             try fetchedResultsController.performFetch()
             setupSnapshot()
-            print("setupFetchedResultsController \(tasks.count)")
+            print("loadSavedData \(tasks.count)")
+            
         } catch {
-            print("Fetch failed \(error.localizedDescription)")
+            print("Fetch failed: \(error.localizedDescription)")
         }
     }
     
