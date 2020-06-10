@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ToDoListViewController: UIViewController {
+class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     enum reuseIdentifiers: String {
         case tableViewCell = "STTableViewCell"
@@ -19,19 +19,29 @@ class ToDoListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var taskComplete = false
-    var tasks: [TodoItem] = []
-    var container: NSPersistentContainer!
+//    var tasks: [TodoItem] = []
+    
+    lazy var appDelegateContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    var container = NSPersistentContainer(name: "SimpleToDo")
+    var datasource: UITableViewDiffableDataSource<Section, TodoItem>!
+    var snapshot = NSDiffableDataSourceSnapshot<Section, TodoItem>()
+    var fetchedResultsController: NSFetchedResultsController<TodoItem>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.dataSource = self
         
         setupNavigationController()
         registerNib()
-        connectPersistentContainer()
-        loadSavedData()
+        setupCoreData()
+        fetchSavedData()
+        configureDataSource()
+        setupSnapshot()
+        
+//        connectPersistentContainer()
+//        loadSavedData()
     }
     
     private func setupNavigationController() {
@@ -49,52 +59,87 @@ class ToDoListViewController: UIViewController {
         tableView.register(STTableViewCell, forCellReuseIdentifier: reuseIdentifiers.tableViewCell.rawValue)
     }
     
-    // MARK: Core Data stuff
-    func connectPersistentContainer() {
-        container = NSPersistentContainer(name: "SimpleToDo")
+    // MARK: - Core Data stuff
+    func setupCoreData() {
         container.loadPersistentStores { storeDescription, error in
+            self.container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                print("❌ failed to load database \(error.localizedDescription)")
             }
         }
     }
     
-    func loadSavedData() {
+    func fetchSavedData() {
         let request = TodoItem.createFetchRequest()
-        let sort = NSSortDescriptor(key: "date", ascending: false)
+        let sort = NSSortDescriptor(key: "title", ascending: true)
+        
         request.sortDescriptors = [sort]
         
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
         do {
-            tasks = try container.viewContext.fetch(request)
-            tableView.reloadData()
+            try fetchedResultsController.performFetch()
+            setupSnapshot()
         } catch {
-            print("Fetch failed: \(error.localizedDescription)")
+            print("❌ Fetch failed \(error.localizedDescription)")
+        }
+    }
+    
+    func setupSnapshot() {
+        snapshot = NSDiffableDataSourceSnapshot<Section, TodoItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(fetchedResultsController.fetchedObjects ?? [])
+        datasource?.apply(snapshot)
+    }
+    
+    func configureDataSource() {
+        datasource = UITableViewDiffableDataSource<Section, TodoItem>(tableView: tableView) { ( tableView, indePath, task) -> UITableViewCell in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indePath) as? STTableViewCell else {
+                fatalError()
+            }
+            
+            cell.todoListTextLabel.text = task.title
+            switch task.taskCompleted {
+            case true:
+                cell.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
+            case false:
+                cell.todoItemStatus.image = UIImage(systemName: "x.circle")
+            }
+            
+            return cell
         }
     }
 }
 
 // MARK: Extension - Table View
-extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ToDoListViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return tasks.count
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indexPath) as? STTableViewCell
-        let task = tasks[indexPath.row]
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indexPath) as? STTableViewCell
+//        let task = tasks[indexPath.row]
+//
+//        cell?.todoListTextLabel.text = task.title
+//        switch task.taskCompleted {
+//        case true:
+//            cell?.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
+//        case false:
+//            cell?.todoItemStatus.image = UIImage(systemName: "x.circle")
+//        }
+//
+//        return cell!
+//    }
+}
 
-        cell?.todoListTextLabel.text = task.title
-        switch task.taskCompleted {
-        case true:
-            cell?.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
-        case false:
-            cell?.todoItemStatus.image = UIImage(systemName: "x.circle")
-        }
-
-        return cell!
+extension ToDoListViewController {
+    enum Section {
+        case main
     }
 }

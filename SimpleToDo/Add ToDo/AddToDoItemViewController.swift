@@ -18,6 +18,7 @@ class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDel
     let taskCompleteLabel = UILabel()
     
     var container: NSPersistentContainer!
+    weak var vc: TaskListTableViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,8 @@ class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDel
     
     @objc func saveItem() {
         saveTask()
+//        let formatter = DateFormatter()
+//        vc.saveTask(date: formatter.date(from: "MMM d, yyyy") ?? Date(), title: self.taskTitleTextField.text!, taskCompleted: self.taskCompleteSwitch.isOn)
         self.dismiss(animated: true)
     }
     
