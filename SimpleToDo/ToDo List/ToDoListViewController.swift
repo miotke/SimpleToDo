@@ -110,6 +110,12 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
             return cell
         }
     }
+    
+    private func updateSnapshotWhenSaving() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("updateSnapshot"), object: nil, queue: nil) { (_) in
+            self.setupSnapshot()
+        }
+    }
 }
 
 // MARK: Extension - Table View

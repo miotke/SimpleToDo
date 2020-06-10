@@ -18,7 +18,8 @@ class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDel
     let taskCompleteLabel = UILabel()
     
     var container: NSPersistentContainer!
-    weak var vc: TaskListTableViewController!
+//    weak var vc: TaskListTableViewController!
+    weak var vc: ToDoListViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDel
         
         self.saveContext()
         print(task.date)
+        NotificationCenter.default.post(name: NSNotification.Name("updateSnapshot"), object: nil)
     }
     
     func saveContext() {
