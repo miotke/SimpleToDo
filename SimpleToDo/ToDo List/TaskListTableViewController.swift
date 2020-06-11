@@ -123,4 +123,28 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         diffableDataSourceSnapshot.appendItems(fetchedResultsController.fetchedObjects ?? [])
         diffableDataSource?.apply(self.diffableDataSourceSnapshot)
     }
+    
+    // MARK: - Save data
+    func saveChanges() {
+        guard container.viewContext.hasChanges else { return }
+        
+        do {
+            try container.viewContext.save()
+        } catch {
+            print("An error occured while saving \(error.localizedDescription)")
+        }
+    }
+    
+    func saveTask(date: Date, title: String, taskCompleted: Bool) {
+        let task = TodoItem(context: container.viewContext)
+        
+        task.date = date
+        task.title = title
+        task.taskCompleted = taskCompleted
+        
+        tasks.append(task)
+        
+        setupSnapshot()
+        saveChanges()
+    }
 }
