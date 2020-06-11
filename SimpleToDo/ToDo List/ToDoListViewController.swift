@@ -91,6 +91,8 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     func configureDataSource() {
         datasource = UITableViewDiffableDataSource<Section, TodoItem>(tableView: tableView) { ( tableView, indePath, task) -> UITableViewCell in
+            tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indePath) as? STTableViewCell else {
                 fatalError()
             }
