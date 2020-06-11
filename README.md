@@ -24,3 +24,7 @@ This is a portfolio project and is not deployed on the app store. This project i
 * Clone this repo and open the project directory
 * Open `SimpleToDo.xcodeproj` and build+run in Xcode
 * Targets iOS 13+
+
+### Credits
+* [Icons8](https://icons8.com) for the app icon
+* [MakeAppIcon(https://makeappicon.com) for generating the app icon
