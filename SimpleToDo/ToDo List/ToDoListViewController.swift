@@ -39,7 +39,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         fetchSavedData()
         configureDataSource()
         setupSnapshot()
-        
+        updateSnapshotWhenSaving()
 //        connectPersistentContainer()
 //        loadSavedData()
     }
@@ -113,9 +113,11 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     private func updateSnapshotWhenSaving() {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("updateSnapshot"), object: nil, queue: nil) { (_) in
-            self.setupSnapshot()
+            print("do something👻")
+            self.fetchSavedData()
         }
     }
+
 }
 
 // MARK: Extension - Table View

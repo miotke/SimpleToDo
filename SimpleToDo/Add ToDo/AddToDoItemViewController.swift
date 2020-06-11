@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class AddToDoItemViewController: UIViewController {
     
     var dateOfTask: String = ""
     let dateLabel = UILabel()
@@ -18,7 +18,6 @@ class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDel
     let taskCompleteLabel = UILabel()
     
     var container: NSPersistentContainer!
-//    weak var vc: TaskListTableViewController!
     weak var vc: ToDoListViewController!
 
     override func viewDidLoad() {
@@ -67,10 +66,10 @@ class AddToDoItemViewController: UIViewController, NSFetchedResultsControllerDel
         let dismissButtonImage = UIImage(systemName: "x.circle.fill")
         navigationItem.title = "Add task"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: dismissButtonImage, style: .done, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveItem))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveItemButton))
     }
     
-    @objc func saveItem() {
+    @objc func saveItemButton() {
         saveTask()
 //        let formatter = DateFormatter()
 //        vc.saveTask(date: formatter.date(from: "MMM d, yyyy") ?? Date(), title: self.taskTitleTextField.text!, taskCompleted: self.taskCompleteSwitch.isOn)
