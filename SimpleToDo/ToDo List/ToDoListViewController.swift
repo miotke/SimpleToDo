@@ -13,7 +13,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     enum reuseIdentifiers: String {
         case tableViewCell = "STTableViewCell"
-        case toAddToDoItemVC = "toAddToDoItemVC"
+        case toAddTaskViewController = "toAddTaskViewController"
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,9 +22,9 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     lazy var appDelegateContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var container = NSPersistentContainer(name: "SimpleToDo")
-    var datasource: UITableViewDiffableDataSource<Section, TodoItem>!
-    var snapshot = NSDiffableDataSourceSnapshot<Section, TodoItem>()
-    var fetchedResultsController: NSFetchedResultsController<TodoItem>!
+    var datasource: UITableViewDiffableDataSource<Section, Task>!
+    var snapshot = NSDiffableDataSourceSnapshot<Section, Task>()
+    var fetchedResultsController: NSFetchedResultsController<Task>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +41,13 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     private func setupNavigationController() {
-        let addToDoItemButtonImage = UIImage(systemName: "plus")
+        let addTaskItemButtonImage = UIImage(systemName: "plus")
         navigationItem.title = "Simple ToDo"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: addToDoItemButtonImage, style: .plain, target: self, action: #selector(addToDoItem))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: addTaskItemButtonImage, style: .plain, target: self, action: #selector(addTaskItemButton))
     }
     
-    @objc func addToDoItem() {
-        performSegue(withIdentifier: reuseIdentifiers.toAddToDoItemVC.rawValue, sender: self)
+    @objc func addTaskItemButton() {
+        performSegue(withIdentifier: reuseIdentifiers.toAddTaskViewController.rawValue, sender: self)
     }
     
     private func registerNib() {
@@ -66,7 +66,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     func fetchSavedData() {
-        let request = TodoItem.createFetchRequest()
+        let request = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "title", ascending: true)
         
         request.sortDescriptors = [sort]
@@ -83,14 +83,14 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     func setupSnapshot() {
-        snapshot = NSDiffableDataSourceSnapshot<Section, TodoItem>()
+        snapshot = NSDiffableDataSourceSnapshot<Section, Task>()
         snapshot.appendSections([.main])
         snapshot.appendItems(fetchedResultsController.fetchedObjects ?? [])
         datasource?.apply(snapshot)
     }
     
     func configureDataSource() {
-        datasource = UITableViewDiffableDataSource<Section, TodoItem>(tableView: tableView) { ( tableView, indePath, task) -> UITableViewCell in
+        datasource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indePath, task) -> UITableViewCell in
             tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indePath) as? STTableViewCell else {

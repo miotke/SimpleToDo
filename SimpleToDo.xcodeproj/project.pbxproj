@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4C15C27E2464FE4500BB6395 /* AddToDoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C27D2464FE4500BB6395 /* AddToDoItemViewController.swift */; };
-		4C1E4678246C912100B81A8D /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1E4677246C912100B81A8D /* TaskListTableViewController.swift */; };
 		4C4092102464F5080035384C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40920F2464F5080035384C /* AppDelegate.swift */; };
 		4C4092122464F5080035384C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4092112464F5080035384C /* SceneDelegate.swift */; };
 		4C4092142464F5080035384C /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4092132464F5080035384C /* ToDoListViewController.swift */; };
@@ -24,7 +23,6 @@
 
 /* Begin PBXFileReference section */
 		4C15C27D2464FE4500BB6395 /* AddToDoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoItemViewController.swift; sourceTree = "<group>"; };
-		4C1E4677246C912100B81A8D /* TaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		4C40920C2464F5080035384C /* SimpleToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C40920F2464F5080035384C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C4092112464F5080035384C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 			children = (
 				4C4092302464F7580035384C /* Cell */,
 				4C4092132464F5080035384C /* ToDoListViewController.swift */,
-				4C1E4677246C912100B81A8D /* TaskListTableViewController.swift */,
 			);
 			path = "ToDo List";
 			sourceTree = "<group>";
@@ -200,7 +197,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C1E4678246C912100B81A8D /* TaskListTableViewController.swift in Sources */,
 				4C4092142464F5080035384C /* ToDoListViewController.swift in Sources */,
 				4C15C27E2464FE4500BB6395 /* AddToDoItemViewController.swift in Sources */,
 				4C4092102464F5080035384C /* AppDelegate.swift in Sources */,

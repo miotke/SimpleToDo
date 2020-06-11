@@ -40,7 +40,7 @@ class AddToDoItemViewController: UIViewController {
     }
     
     func saveTask() {
-        let task = TodoItem(context: container.viewContext)
+        let task = Task(context: container.viewContext)
         let formatter = DateFormatter()
         
         task.title = self.taskTitleTextField.text!
