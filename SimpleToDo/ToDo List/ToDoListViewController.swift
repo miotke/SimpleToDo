@@ -19,7 +19,6 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     @IBOutlet weak var tableView: UITableView!
     
     var taskComplete = false
-//    var tasks: [TodoItem] = []
     
     lazy var appDelegateContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var container = NSPersistentContainer(name: "SimpleToDo")
@@ -30,8 +29,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-//        tableView.dataSource = self
+//        tableView.delegate = self
         
         setupNavigationController()
         registerNib()
@@ -40,8 +38,6 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         configureDataSource()
         setupSnapshot()
         updateSnapshotWhenSaving()
-//        connectPersistentContainer()
-//        loadSavedData()
     }
     
     private func setupNavigationController() {
@@ -118,32 +114,6 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         }
     }
 
-}
-
-// MARK: Extension - Table View
-extension ToDoListViewController: UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return tasks.count
-//    }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indexPath) as? STTableViewCell
-//        let task = tasks[indexPath.row]
-//
-//        cell?.todoListTextLabel.text = task.title
-//        switch task.taskCompleted {
-//        case true:
-//            cell?.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
-//        case false:
-//            cell?.todoItemStatus.image = UIImage(systemName: "x.circle")
-//        }
-//
-//        return cell!
-//    }
 }
 
 extension ToDoListViewController {
