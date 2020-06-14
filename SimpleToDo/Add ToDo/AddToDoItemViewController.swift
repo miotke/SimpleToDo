@@ -40,7 +40,7 @@ class AddToDoItemViewController: UIViewController {
     }
     
     func saveTask() {
-        let task = TodoItem(context: container.viewContext)
+        let task = Task(context: container.viewContext)
         let formatter = DateFormatter()
         
         task.title = self.taskTitleTextField.text!
@@ -71,8 +71,6 @@ class AddToDoItemViewController: UIViewController {
     
     @objc func saveItemButton() {
         saveTask()
-//        let formatter = DateFormatter()
-//        vc.saveTask(date: formatter.date(from: "MMM d, yyyy") ?? Date(), title: self.taskTitleTextField.text!, taskCompleted: self.taskCompleteSwitch.isOn)
         self.dismiss(animated: true)
     }
     
