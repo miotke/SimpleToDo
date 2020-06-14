@@ -19,6 +19,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     @IBOutlet weak var tableView: UITableView!
     
     var taskComplete = false
+    let dateFormatter = DateFormatter()
     
     lazy var appDelegateContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var container = NSPersistentContainer(name: "SimpleToDo")
@@ -88,7 +89,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         snapshot.appendItems(fetchedResultsController.fetchedObjects ?? [])
         datasource?.apply(snapshot)
     }
-    
+        
     func configureDataSource() {
         datasource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indePath, task) -> UITableViewCell in
             tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
@@ -97,12 +98,19 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
                 fatalError()
             }
             
-            cell.todoListTextLabel.text = task.title
+            self.dateFormatter.dateStyle = .short
+            
+            cell.taskTitleTextLabel.text = task.title
             switch task.taskCompleted {
             case true:
-                cell.todoItemStatus.image = UIImage(systemName: "checkmark.circle")
+                cell.taskDateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"
+                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "checkmark.circle")
+                cell.taskItemStatusIndictorImage.tintColor = .systemGreen
             case false:
-                cell.todoItemStatus.image = UIImage(systemName: "x.circle")
+                cell.backgroundColor = .systemRed
+                cell.taskDateLabel.text = "Not complete"
+                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "x.circle")
+                cell.taskItemStatusIndictorImage.tintColor = .systemBackground
             }
             
             return cell

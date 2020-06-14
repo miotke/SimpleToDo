@@ -71,8 +71,6 @@ class AddToDoItemViewController: UIViewController {
     
     @objc func saveItemButton() {
         saveTask()
-//        let formatter = DateFormatter()
-//        vc.saveTask(date: formatter.date(from: "MMM d, yyyy") ?? Date(), title: self.taskTitleTextField.text!, taskCompleted: self.taskCompleteSwitch.isOn)
         self.dismiss(animated: true)
     }
     
