@@ -17,17 +17,12 @@ class STTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureTaskTitleTextLabel()
-        configureTaskItemStatusIndictorImage()
         configureTaskDatelabel()
     }
     
     func configureTaskTitleTextLabel() {
         let title = self.taskTitleTextLabel
         title?.font = UIFont.systemFont(ofSize: 21, weight: .bold)
-    }
-    
-    func configureTaskItemStatusIndictorImage() {
-        
     }
     
     func configureTaskDatelabel() {
