@@ -68,7 +68,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     func fetchSavedData() {
         let request = Task.createFetchRequest()
-        let sort = NSSortDescriptor(key: "title", ascending: true)
+        let sort = NSSortDescriptor(key: "taskCompleted", ascending: true)
         
         request.sortDescriptors = [sort]
         
