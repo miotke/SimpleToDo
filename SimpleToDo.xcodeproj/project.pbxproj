@@ -49,12 +49,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C15C27C2464FE1000BB6395 /* Add ToDo */ = {
+		4C15C27C2464FE1000BB6395 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
 				4C15C27D2464FE4500BB6395 /* AddToDoItemViewController.swift */,
 			);
-			path = "Add ToDo";
+			path = AddTask;
 			sourceTree = "<group>";
 		};
 		4C4092032464F5080035384C = {
@@ -77,16 +77,16 @@
 			isa = PBXGroup;
 			children = (
 				4CD6968D249834B900230687 /* TaskDetails */,
-				4C15C27C2464FE1000BB6395 /* Add ToDo */,
-				4C4092282464F5CA0035384C /* ToDo List */,
-				4C4092272464F5A50035384C /* Core Data */,
-				4C4092262464F55B0035384C /* Supporting Files */,
+				4C15C27C2464FE1000BB6395 /* AddTask */,
+				4C4092282464F5CA0035384C /* TaskList */,
+				4C4092272464F5A50035384C /* CoreData */,
+				4C4092262464F55B0035384C /* SupportingFiles */,
 				4C4092152464F5080035384C /* Main.storyboard */,
 			);
 			path = SimpleToDo;
 			sourceTree = "<group>";
 		};
-		4C4092262464F55B0035384C /* Supporting Files */ = {
+		4C4092262464F55B0035384C /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				4C40920F2464F5080035384C /* AppDelegate.swift */,
@@ -95,26 +95,26 @@
 				4C40921D2464F5090035384C /* LaunchScreen.storyboard */,
 				4C4092202464F5090035384C /* Info.plist */,
 			);
-			path = "Supporting Files";
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		4C4092272464F5A50035384C /* Core Data */ = {
+		4C4092272464F5A50035384C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				4C896B19246A0E71007E036E /* TodoItem+CoreDataClass.swift */,
 				4C896B1A246A0E71007E036E /* TodoItem+CoreDataProperties.swift */,
 				4C4092182464F5080035384C /* SimpleToDo.xcdatamodeld */,
 			);
-			path = "Core Data";
+			path = CoreData;
 			sourceTree = "<group>";
 		};
-		4C4092282464F5CA0035384C /* ToDo List */ = {
+		4C4092282464F5CA0035384C /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
 				4C4092302464F7580035384C /* Cell */,
 				4C4092132464F5080035384C /* ToDoListViewController.swift */,
 			);
-			path = "ToDo List";
+			path = TaskList;
 			sourceTree = "<group>";
 		};
 		4C4092302464F7580035384C /* Cell */ = {
