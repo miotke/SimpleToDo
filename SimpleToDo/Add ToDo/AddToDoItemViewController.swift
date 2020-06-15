@@ -48,7 +48,6 @@ class AddToDoItemViewController: UIViewController {
         task.taskCompleted = taskCompleteSwitch.isOn
         
         self.saveContext()
-        print(task.date)
         NotificationCenter.default.post(name: NSNotification.Name("updateSnapshot"), object: nil)
     }
     
