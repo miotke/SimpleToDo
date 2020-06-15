@@ -76,6 +76,7 @@
 		4C40920E2464F5080035384C /* SimpleToDo */ = {
 			isa = PBXGroup;
 			children = (
+				4CD6968D249834B900230687 /* TaskDetails */,
 				4C15C27C2464FE1000BB6395 /* Add ToDo */,
 				4C4092282464F5CA0035384C /* ToDo List */,
 				4C4092272464F5A50035384C /* Core Data */,
@@ -123,6 +124,13 @@
 				4C40922D2464F6270035384C /* STTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4CD6968D249834B900230687 /* TaskDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TaskDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
