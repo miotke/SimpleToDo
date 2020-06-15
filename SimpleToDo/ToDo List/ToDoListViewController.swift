@@ -20,6 +20,10 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     var taskComplete = false
     let dateFormatter = DateFormatter()
+    fileprivate let request = Task.createFetchRequest()
+    var sortOnNotComplete = NSSortDescriptor(key: "taskCompleted", ascending: true)
+    var sortOnCompleted = NSSortDescriptor(key: "taskCompleted", ascending: false)
+    lazy var selectedSort = [sortOnNotComplete, sortOnCompleted]
     
     lazy var appDelegateContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var container = NSPersistentContainer(name: "SimpleToDo")
@@ -29,9 +33,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        tableView.delegate = self
-        
+
         setupNavigationController()
         registerNib()
         setupCoreData()
@@ -43,8 +45,29 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     private func setupNavigationController() {
         let addTaskItemButtonImage = UIImage(systemName: "plus")
+        let sortingButtonImage = UIImage(systemName: "slider.horizontal.3")
+        
         navigationItem.title = "Simple ToDo"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: sortingButtonImage, style: .plain, target: self, action: #selector(selectSortingType))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: addTaskItemButtonImage, style: .plain, target: self, action: #selector(addTaskItemButton))
+    }
+    
+    @objc func selectSortingType() {
+        let alertActionSheet = UIAlertController(title: "Sort by:", message: "Choose how you want to sort tasks", preferredStyle: .actionSheet)
+        
+        alertActionSheet.addAction(UIAlertAction(title: "Completed", style: .default, handler: { action in
+            self.selectedSort = [self.sortOnCompleted, self.sortOnNotComplete]
+            self.fetchSavedData()
+        }))
+        
+        alertActionSheet.addAction(UIAlertAction(title: "Not completed", style: .default, handler: { action in
+            self.selectedSort = [self.sortOnNotComplete, self.sortOnNotComplete]
+            self.fetchSavedData()
+        }))
+        
+        alertActionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertActionSheet, animated: true, completion: nil)
     }
     
     @objc func addTaskItemButton() {
@@ -67,10 +90,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     func fetchSavedData() {
-        let request = Task.createFetchRequest()
-        let sort = NSSortDescriptor(key: "taskCompleted", ascending: true)
-        
-        request.sortDescriptors = [sort]
+        request.sortDescriptors = selectedSort
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
@@ -119,7 +139,6 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     private func updateSnapshotWhenSaving() {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("updateSnapshot"), object: nil, queue: nil) { (_) in
-            print("do something👻")
             self.fetchSavedData()
         }
     }
