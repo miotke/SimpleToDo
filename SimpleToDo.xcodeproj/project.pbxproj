@@ -19,6 +19,7 @@
 		4C40922F2464F6270035384C /* STTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C40922D2464F6270035384C /* STTableViewCell.xib */; };
 		4C896B1B246A0E71007E036E /* TodoItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C896B19246A0E71007E036E /* TodoItem+CoreDataClass.swift */; };
 		4C896B1C246A0E71007E036E /* TodoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C896B1A246A0E71007E036E /* TodoItem+CoreDataProperties.swift */; };
+		4CD6968F2498356300230687 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6968E2498356300230687 /* TaskDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4C40922D2464F6270035384C /* STTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = STTableViewCell.xib; sourceTree = "<group>"; };
 		4C896B19246A0E71007E036E /* TodoItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4C896B1A246A0E71007E036E /* TodoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4CD6968E2498356300230687 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		4CD6968D249834B900230687 /* TaskDetails */ = {
 			isa = PBXGroup;
 			children = (
+				4CD6968E2498356300230687 /* TaskDetailViewController.swift */,
 			);
 			path = TaskDetails;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CD6968F2498356300230687 /* TaskDetailViewController.swift in Sources */,
 				4C4092142464F5080035384C /* ToDoListViewController.swift in Sources */,
 				4C15C27E2464FE4500BB6395 /* AddToDoItemViewController.swift in Sources */,
 				4C4092102464F5080035384C /* AppDelegate.swift in Sources */,
@@ -358,7 +362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3RCM6QHD86;
-				INFOPLIST_FILE = "SimpleToDo/Supporting Files/Info.plist";
+				INFOPLIST_FILE = SimpleToDo/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -377,7 +381,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3RCM6QHD86;
-				INFOPLIST_FILE = "SimpleToDo/Supporting Files/Info.plist";
+				INFOPLIST_FILE = SimpleToDo/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

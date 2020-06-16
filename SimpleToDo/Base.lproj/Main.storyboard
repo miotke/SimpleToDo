@@ -26,6 +26,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Rua-Hx-cIH" kind="showDetail" identifier="toTaskDetailViewController" id="A5T-SB-N2b"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -73,22 +76,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTq-bj-M0o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2741" y="123"/>
+            <point key="canvasLocation" x="2548" y="-346"/>
         </scene>
-        <!--View Controller-->
+        <!--Task Detail View Controller-->
         <scene sceneID="3eL-F1-xEb">
             <objects>
-                <viewController id="Rua-Hx-cIH" sceneMemberID="viewController">
+                <viewController id="Rua-Hx-cIH" customClass="TaskDetailViewController" customModule="SimpleToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KY3-fP-Cgu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOp-hF-cXQ">
+                                <rect key="frame" x="186" y="410.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MOp-hF-cXQ" firstAttribute="centerY" secondItem="KY3-fP-Cgu" secondAttribute="centerY" id="XJr-f5-op6"/>
+                            <constraint firstItem="MOp-hF-cXQ" firstAttribute="centerX" secondItem="KY3-fP-Cgu" secondAttribute="centerX" id="uIE-O4-ytd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Buf-G5-Cri"/>
                     </view>
+                    <connections>
+                        <outlet property="testLabel" destination="MOp-hF-cXQ" id="EO8-dy-8Y8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fO-eE-6MU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3410" y="123"/>
+            <point key="canvasLocation" x="1816" y="305"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3AN-vV-EwH">
@@ -125,7 +143,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Go-tb-R25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897" y="123"/>
+            <point key="canvasLocation" x="1816" y="-346"/>
         </scene>
     </scenes>
 </document>

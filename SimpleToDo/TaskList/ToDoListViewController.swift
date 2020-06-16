@@ -9,11 +9,12 @@
 import UIKit
 import CoreData
 
-class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate {
     
     enum reuseIdentifiers: String {
         case tableViewCell = "STTableViewCell"
         case toAddTaskViewController = "toAddTaskViewController"
+        case toTaskDetailViewController = "toTaskDetailViewController"
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +26,8 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     var sortOnCompleted = NSSortDescriptor(key: "taskCompleted", ascending: false)
     lazy var selectedSort = [sortOnNotComplete, sortOnCompleted]
     
+    var tasks: [Task] = []
+    
     lazy var appDelegateContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var container = NSPersistentContainer(name: "SimpleToDo")
     var datasource: UITableViewDiffableDataSource<Section, Task>!
@@ -33,7 +36,8 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.delegate = self
+        
         setupNavigationController()
         registerNib()
         setupCoreData()
@@ -142,7 +146,10 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
             self.fetchSavedData()
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: reuseIdentifiers.toTaskDetailViewController.rawValue, sender: self)
+    }
 }
 
 extension ToDoListViewController {
