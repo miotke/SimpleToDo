@@ -22,9 +22,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     var taskComplete = false
     let dateFormatter = DateFormatter()
     fileprivate let request = Task.createFetchRequest()
-    var sortOnNotComplete = NSSortDescriptor(key: "taskCompleted", ascending: true)
-    var sortOnCompleted = NSSortDescriptor(key: "taskCompleted", ascending: false)
-    lazy var selectedSort = [sortOnNotComplete, sortOnCompleted]
+    let sorting = Sorting()
     
     var tasks: [Task] = []
     
@@ -60,12 +58,12 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         let alertActionSheet = UIAlertController(title: "Sort by:", message: "Choose how you want to sort tasks", preferredStyle: .actionSheet)
         
         alertActionSheet.addAction(UIAlertAction(title: "Completed", style: .default, handler: { action in
-            self.selectedSort = [self.sortOnCompleted, self.sortOnNotComplete]
+            self.sorting.sortCompleted()
             self.fetchSavedData()
         }))
         
         alertActionSheet.addAction(UIAlertAction(title: "Not completed", style: .default, handler: { action in
-            self.selectedSort = [self.sortOnNotComplete, self.sortOnNotComplete]
+            self.sorting.sortNotCompleted()
             self.fetchSavedData()
         }))
         
@@ -94,7 +92,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     func fetchSavedData() {
-        request.sortDescriptors = selectedSort
+        request.sortDescriptors = sorting.selectedSort
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
@@ -125,6 +123,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
             self.dateFormatter.dateStyle = .short
             
             cell.taskTitleTextLabel.text = task.title
+            
             switch task.taskCompleted {
             case true:
                 cell.taskDateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"

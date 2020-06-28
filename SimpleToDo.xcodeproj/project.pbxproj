@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C10288524A92E130099023C /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C10288424A92E130099023C /* Sorting.swift */; };
 		4C15C27E2464FE4500BB6395 /* AddToDoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C27D2464FE4500BB6395 /* AddToDoItemViewController.swift */; };
 		4C4092102464F5080035384C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40920F2464F5080035384C /* AppDelegate.swift */; };
 		4C4092122464F5080035384C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4092112464F5080035384C /* SceneDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C10288424A92E130099023C /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
 		4C15C27D2464FE4500BB6395 /* AddToDoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoItemViewController.swift; sourceTree = "<group>"; };
 		4C40920C2464F5080035384C /* SimpleToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C40920F2464F5080035384C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				4C4092272464F5A50035384C /* CoreData */,
 				4C4092262464F55B0035384C /* SupportingFiles */,
 				4C4092152464F5080035384C /* Main.storyboard */,
+				4C10288424A92E130099023C /* Sorting.swift */,
 			);
 			path = SimpleToDo;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				4C4092142464F5080035384C /* ToDoListViewController.swift in Sources */,
 				4C15C27E2464FE4500BB6395 /* AddToDoItemViewController.swift in Sources */,
 				4C4092102464F5080035384C /* AppDelegate.swift in Sources */,
+				4C10288524A92E130099023C /* Sorting.swift in Sources */,
 				4C4092122464F5080035384C /* SceneDelegate.swift in Sources */,
 				4C896B1C246A0E71007E036E /* TodoItem+CoreDataProperties.swift in Sources */,
 				4C896B1B246A0E71007E036E /* TodoItem+CoreDataClass.swift in Sources */,
