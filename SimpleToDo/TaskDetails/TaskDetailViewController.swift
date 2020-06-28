@@ -16,7 +16,7 @@ class TaskDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        testLabel.text = "Task: \(taskDetail?.title)"
         
     }
 }
