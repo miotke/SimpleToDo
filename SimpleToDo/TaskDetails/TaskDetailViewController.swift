@@ -12,11 +12,13 @@ class TaskDetailViewController: UIViewController {
 
     @IBOutlet weak var testLabel: UILabel!
     
+    var aTitle = ""
+    
     var taskDetail: Task?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testLabel.text = "Task: \(taskDetail?.title)"
+        testLabel.text = "Task: \(aTitle)"
         
     }
 }

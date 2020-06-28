@@ -100,6 +100,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         do {
             try fetchedResultsController.performFetch()
             setupSnapshot()
+            tasks.append(contentsOf: fetchedResultsController.fetchedObjects!)
         } catch {
             print("❌ Fetch failed \(error.localizedDescription)")
         }
@@ -147,7 +148,19 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: reuseIdentifiers.toTaskDetailViewController.rawValue, sender: self)
+        let task = tasks[indexPath.item]
+        let destVC = TaskDetailViewController()
+        destVC.aTitle = task.title
+//        performSegue(withIdentifier: reuseIdentifiers.toTaskDetailViewController.rawValue, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == reuseIdentifiers.toTaskDetailViewController.rawValue {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! TaskDetailViewController
+                controller.aTitle = "Task[indexPath.row]"
+            }
+        }
     }
 }
 
