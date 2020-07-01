@@ -18,7 +18,17 @@ class TaskDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationController()
         testLabel.text = "Task: \(aTitle)"
         
+    }
+    
+    func setupNavigationController() {
+        navigationItem.title = "Details"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "x.circle.fill"), style: .done, target: self, action: #selector(doneButtonTapped))
+    }
+    
+    @objc func doneButtonTapped() {
+        self.dismiss(animated: true)
     }
 }
