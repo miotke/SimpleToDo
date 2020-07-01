@@ -151,14 +151,14 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         let task = tasks[indexPath.item]
         let destVC = TaskDetailViewController()
         destVC.aTitle = task.title
-//        performSegue(withIdentifier: reuseIdentifiers.toTaskDetailViewController.rawValue, sender: self)
+        performSegue(withIdentifier: reuseIdentifiers.toTaskDetailViewController.rawValue, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == reuseIdentifiers.toTaskDetailViewController.rawValue {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let controller = segue.destination as! TaskDetailViewController
-                controller.aTitle = "Task[indexPath.row]"
+                controller.aTitle = String(indexPath.count)
             }
         }
     }
