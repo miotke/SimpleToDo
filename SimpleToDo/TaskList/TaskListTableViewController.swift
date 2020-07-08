@@ -46,7 +46,7 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         let addTaskItemButtonImage = UIImage(systemName: "plus")
         let sortingButtonImage = UIImage(systemName: "slider.horizontal.3")
         
-        navigationItem.title = "Simple ToDo"
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: sortingButtonImage, style: .plain, target: self, action: #selector(selectSortingType))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: addTaskItemButtonImage, style: .plain, target: self, action: #selector(addTaskItemButton))
     }

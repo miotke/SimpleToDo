@@ -39,7 +39,6 @@ class STTableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         taskStatusIndicatorImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        // MARK: STOPPING POINT: Finishing writing the constraints
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
             stackView.trailingAnchor.constraint(equalTo: taskStatusIndicatorImageView.leadingAnchor, constant: -padding),
