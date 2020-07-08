@@ -12,8 +12,8 @@ class STTableViewCell: UITableViewCell {
     
     static let reuseId = "STTableViewCell"
     
-    let taskTitle = UILabel()
-    let dateLabel = UILabel()
+    let taskTitleTextLabel = UILabel()
+    let taskDateLabel = UILabel()
     let taskStatusIndicatorImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -24,17 +24,15 @@ class STTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     private func layoutUI() {
         let padding: CGFloat = 8
-        let stackView = UIStackView(arrangedSubviews: [taskTitle, dateLabel])
+        let taskStatusIndicatorImageViewDiminsion: CGFloat = 35
+        let stackView = UIStackView(arrangedSubviews: [taskTitleTextLabel, taskDateLabel])
         
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        
+        stackView.distribution = .equalSpacing
         
         addSubview(stackView)
         addSubview(taskStatusIndicatorImageView)
@@ -44,6 +42,16 @@ class STTableViewCell: UITableViewCell {
         // MARK: STOPPING POINT: Finishing writing the constraints
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            stackView.trailingAnchor.constraint(equalTo: taskStatusIndicatorImageView.leadingAnchor, constant: -padding),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            
+            taskStatusIndicatorImageView.topAnchor.constraint(equalTo: self.topAnchor,constant: padding),
+            taskStatusIndicatorImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            taskStatusIndicatorImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding),
+            taskStatusIndicatorImageView.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: padding),
+            taskStatusIndicatorImageView.heightAnchor.constraint(equalToConstant: taskStatusIndicatorImageViewDiminsion),
+            taskStatusIndicatorImageView.widthAnchor.constraint(equalToConstant: taskStatusIndicatorImageViewDiminsion)
         ])
     }
     

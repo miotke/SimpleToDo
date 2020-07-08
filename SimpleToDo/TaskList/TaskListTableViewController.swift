@@ -115,20 +115,19 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
             
             self.dateFormatter.dateStyle = .short
             
-            cell.textLabel?.text = task.title
-//            cell.taskTitleTextLabel.text = task.title
-//            
-//            switch task.taskCompleted {
-//            case true:
-//                cell.taskDateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"
-//                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "checkmark.circle")
-//                cell.taskItemStatusIndictorImage.tintColor = .systemGreen
-//            case false:
-//                cell.backgroundColor = .systemRed
-//                cell.taskDateLabel.text = "Not complete"
-//                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "x.circle")
-//                cell.taskItemStatusIndictorImage.tintColor = .systemBackground
-//            }
+            cell.taskTitleTextLabel.text = task.title
+            
+            switch task.taskCompleted {
+            case true:
+                cell.taskDateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"
+                cell.taskStatusIndicatorImageView.image = UIImage(systemName: "checkmark.circle")
+                cell.taskStatusIndicatorImageView.tintColor = .systemGreen
+            case false:
+                cell.backgroundColor = .systemRed
+                cell.taskDateLabel.text = "Not complete"
+                cell.taskStatusIndicatorImageView.image = UIImage(systemName: "x.circle")
+                cell.taskStatusIndicatorImageView.tintColor = .systemBackground
+            }
             
             return cell
         }
