@@ -18,7 +18,7 @@ class AddToDoItemViewController: UIViewController {
     let taskCompleteLabel = UILabel()
     
     var container: NSPersistentContainer!
-    weak var vc: ToDoListViewController!
+    weak var vc: TaskListTableViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()

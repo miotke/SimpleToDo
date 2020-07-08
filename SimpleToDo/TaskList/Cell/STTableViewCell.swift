@@ -10,24 +10,10 @@ import UIKit
 
 class STTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var taskTitleTextLabel: UILabel!
-    @IBOutlet weak var taskItemStatusIndictorImage: UIImageView!
-    @IBOutlet weak var taskDateLabel: UILabel!
+    static let reuseId = "STTableViewCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        configureTaskTitleTextLabel()
-        configureTaskDatelabel()
-    }
-    
-    func configureTaskTitleTextLabel() {
-        let title = self.taskTitleTextLabel
-        title?.font = UIFont.systemFont(ofSize: 21, weight: .bold)
-    }
-    
-    func configureTaskDatelabel() {
-        let dateLabel = self.taskDateLabel
-        dateLabel?.font = UIFont.systemFont(ofSize: 18, weight: .ultraLight)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: "STTableViewCell")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,4 +22,7 @@ class STTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

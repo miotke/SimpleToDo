@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TaskListTableViewController.swift
 //  SimpleToDo
 //
 //  Created by Andrew Miotke on 5/7/20.
@@ -9,15 +9,13 @@
 import UIKit
 import CoreData
 
-class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate {
+class TaskListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     enum reuseIdentifiers: String {
         case tableViewCell = "STTableViewCell"
         case toAddTaskViewController = "toAddTaskViewController"
         case toTaskDetailViewController = "toTaskDetailViewController"
     }
-    
-    @IBOutlet weak var tableView: UITableView!
     
     var taskComplete = false
     let dateFormatter = DateFormatter()
@@ -34,10 +32,9 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        
+        tableView.register(STTableViewCell.self, forCellReuseIdentifier: STTableViewCell.reuseId)
+
         setupNavigationController()
-        registerNib()
         setupCoreData()
         fetchSavedData()
         configureDataSource()
@@ -76,11 +73,6 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         performSegue(withIdentifier: reuseIdentifiers.toAddTaskViewController.rawValue, sender: self)
     }
     
-    private func registerNib() {
-        let STTableViewCell = UINib(nibName: "STTableViewCell", bundle: nil)
-        tableView.register(STTableViewCell, forCellReuseIdentifier: reuseIdentifiers.tableViewCell.rawValue)
-    }
-    
     // MARK: - Core Data stuff
     func setupCoreData() {
         container.loadPersistentStores { storeDescription, error in
@@ -114,28 +106,29 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
         
     func configureDataSource() {
-        datasource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indePath, task) -> UITableViewCell in
+        datasource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indexPath, task) -> UITableViewCell in
             tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indePath) as? STTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: STTableViewCell.reuseId, for: indexPath) as? STTableViewCell else {
                 fatalError()
             }
             
             self.dateFormatter.dateStyle = .short
             
-            cell.taskTitleTextLabel.text = task.title
-            
-            switch task.taskCompleted {
-            case true:
-                cell.taskDateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"
-                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "checkmark.circle")
-                cell.taskItemStatusIndictorImage.tintColor = .systemGreen
-            case false:
-                cell.backgroundColor = .systemRed
-                cell.taskDateLabel.text = "Not complete"
-                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "x.circle")
-                cell.taskItemStatusIndictorImage.tintColor = .systemBackground
-            }
+            cell.textLabel?.text = task.title
+//            cell.taskTitleTextLabel.text = task.title
+//            
+//            switch task.taskCompleted {
+//            case true:
+//                cell.taskDateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"
+//                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "checkmark.circle")
+//                cell.taskItemStatusIndictorImage.tintColor = .systemGreen
+//            case false:
+//                cell.backgroundColor = .systemRed
+//                cell.taskDateLabel.text = "Not complete"
+//                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "x.circle")
+//                cell.taskItemStatusIndictorImage.tintColor = .systemBackground
+//            }
             
             return cell
         }
@@ -147,7 +140,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = tasks[indexPath.item]
         let destVC = TaskDetailViewController()
         destVC.aTitle = task.title
@@ -164,7 +157,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
 }
 
-extension ToDoListViewController {
+extension TaskListTableViewController {
     enum Section {
         case main
     }
