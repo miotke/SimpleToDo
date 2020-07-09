@@ -141,22 +141,6 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
             self.fetchSavedData()
         }
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = tasks[indexPath.item]
-        let destVC = TaskDetailViewController()
-        destVC.aTitle = task.title
-        performSegue(withIdentifier: reuseIdentifiers.toTaskDetailViewController.rawValue, sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == reuseIdentifiers.toTaskDetailViewController.rawValue {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! TaskDetailViewController
-                controller.aTitle = String(indexPath.count)
-            }
-        }
-    }
 }
 
 extension TaskListTableViewController {
