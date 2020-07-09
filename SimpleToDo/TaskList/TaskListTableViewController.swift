@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TaskListTableViewController.swift
 //  SimpleToDo
 //
 //  Created by Andrew Miotke on 5/7/20.
@@ -9,15 +9,13 @@
 import UIKit
 import CoreData
 
-class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate {
+class TaskListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     enum reuseIdentifiers: String {
         case tableViewCell = "STTableViewCell"
         case toAddTaskViewController = "toAddTaskViewController"
         case toTaskDetailViewController = "toTaskDetailViewController"
     }
-    
-    @IBOutlet weak var tableView: UITableView!
     
     var taskComplete = false
     let dateFormatter = DateFormatter()
@@ -34,10 +32,9 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        
+        tableView.register(STTableViewCell.self, forCellReuseIdentifier: STTableViewCell.reuseId)
+
         setupNavigationController()
-        registerNib()
         setupCoreData()
         fetchSavedData()
         configureDataSource()
@@ -49,7 +46,7 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
         let addTaskItemButtonImage = UIImage(systemName: "plus")
         let sortingButtonImage = UIImage(systemName: "slider.horizontal.3")
         
-        navigationItem.title = "Simple ToDo"
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: sortingButtonImage, style: .plain, target: self, action: #selector(selectSortingType))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: addTaskItemButtonImage, style: .plain, target: self, action: #selector(addTaskItemButton))
     }
@@ -73,12 +70,10 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     @objc func addTaskItemButton() {
-        performSegue(withIdentifier: reuseIdentifiers.toAddTaskViewController.rawValue, sender: self)
-    }
-    
-    private func registerNib() {
-        let STTableViewCell = UINib(nibName: "STTableViewCell", bundle: nil)
-        tableView.register(STTableViewCell, forCellReuseIdentifier: reuseIdentifiers.tableViewCell.rawValue)
+        let addTaskListViewController = AddTaskItemViewController()
+        let navigationController = UINavigationController(rootViewController: addTaskListViewController)
+        
+        present(navigationController, animated: true)
     }
     
     // MARK: - Core Data stuff
@@ -114,10 +109,10 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
     }
         
     func configureDataSource() {
-        datasource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indePath, task) -> UITableViewCell in
+        datasource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indexPath, task) -> UITableViewCell in
             tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifiers.tableViewCell.rawValue, for: indePath) as? STTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: STTableViewCell.reuseId, for: indexPath) as? STTableViewCell else {
                 fatalError()
             }
             
@@ -128,13 +123,13 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
             switch task.taskCompleted {
             case true:
                 cell.taskDateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"
-                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "checkmark.circle")
-                cell.taskItemStatusIndictorImage.tintColor = .systemGreen
+                cell.taskStatusIndicatorImageView.image = UIImage(systemName: "checkmark.circle")
+                cell.taskStatusIndicatorImageView.tintColor = .systemGreen
             case false:
                 cell.backgroundColor = .systemRed
                 cell.taskDateLabel.text = "Not complete"
-                cell.taskItemStatusIndictorImage.image = UIImage(systemName: "x.circle")
-                cell.taskItemStatusIndictorImage.tintColor = .systemBackground
+                cell.taskStatusIndicatorImageView.image = UIImage(systemName: "x.circle")
+                cell.taskStatusIndicatorImageView.tintColor = .systemBackground
             }
             
             return cell
@@ -146,25 +141,9 @@ class ToDoListViewController: UIViewController, NSFetchedResultsControllerDelega
             self.fetchSavedData()
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = tasks[indexPath.item]
-        let destVC = TaskDetailViewController()
-        destVC.aTitle = task.title
-        performSegue(withIdentifier: reuseIdentifiers.toTaskDetailViewController.rawValue, sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == reuseIdentifiers.toTaskDetailViewController.rawValue {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! TaskDetailViewController
-                controller.aTitle = String(indexPath.count)
-            }
-        }
-    }
 }
 
-extension ToDoListViewController {
+extension TaskListTableViewController {
     enum Section {
         case main
     }
