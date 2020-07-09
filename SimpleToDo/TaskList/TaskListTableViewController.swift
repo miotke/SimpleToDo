@@ -74,7 +74,6 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         let navigationController = UINavigationController(rootViewController: addTaskListViewController)
         
         present(navigationController, animated: true)
-//        performSegue(withIdentifier: reuseIdentifiers.toAddTaskViewController.rawValue, sender: self)
     }
     
     // MARK: - Core Data stuff
