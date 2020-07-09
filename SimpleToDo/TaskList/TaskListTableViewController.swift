@@ -70,7 +70,11 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     @objc func addTaskItemButton() {
-        performSegue(withIdentifier: reuseIdentifiers.toAddTaskViewController.rawValue, sender: self)
+        let addTaskListViewController = AddTaskItemViewController()
+        let navigationController = UINavigationController(rootViewController: addTaskListViewController)
+        
+        present(navigationController, animated: true)
+//        performSegue(withIdentifier: reuseIdentifiers.toAddTaskViewController.rawValue, sender: self)
     }
     
     // MARK: - Core Data stuff

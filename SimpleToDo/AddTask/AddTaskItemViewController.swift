@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddToDoItemViewController: UIViewController {
+class AddTaskItemViewController: UIViewController {
     
     var dateOfTask: String = ""
     let dateLabel = UILabel()
@@ -22,11 +22,12 @@ class AddToDoItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         formatDate()
         loadPersistentContainer()
         setupNavigationController()
         addSubviews()
-        configureUI()
+        layoutUI()
         configureStaticUI()
     }
     
@@ -63,9 +64,12 @@ class AddToDoItemViewController: UIViewController {
     
     private func setupNavigationController() {
         let dismissButtonImage = UIImage(systemName: "x.circle.fill")
+        
         navigationItem.title = "Add task"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: dismissButtonImage, style: .done, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveItemButton))
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .systemBackground
     }
     
     @objc func saveItemButton() {
@@ -78,7 +82,7 @@ class AddToDoItemViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    // MARK: UI Setup
+    // MARK: - UI Setup
     private func configureStaticUI() {
         // Placeholder method. Eventually the following strings will be moved to an initilizer
         taskCompleteLabel.text = "Task complete: "
@@ -106,7 +110,7 @@ class AddToDoItemViewController: UIViewController {
         taskCompleteLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func configureUI() {
+    private func layoutUI() {
         let taskCompleteStackView = UIStackView(arrangedSubviews: [taskCompleteLabel, taskCompleteSwitch])
         taskCompleteStackView.axis = .horizontal
         view.addSubview(taskCompleteStackView)

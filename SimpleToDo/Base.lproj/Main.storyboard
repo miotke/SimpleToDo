@@ -7,22 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add To Do Item View Controller-->
-        <scene sceneID="fQa-fV-yQE">
-            <objects>
-                <viewController id="Fcm-OV-GCO" customClass="AddToDoItemViewController" customModule="SimpleToDo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="X1N-2p-3Zd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="sgM-fz-O2F"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="nuY-pK-ctu"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fTq-bj-M0o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2548" y="-346"/>
-        </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="3eL-F1-xEb">
             <objects>
@@ -52,25 +36,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fO-eE-6MU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1816" y="305"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="XxV-Do-PPt">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ki1-my-xYc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="FZl-JA-9qS"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="xWW-4Y-heJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Fcm-OV-GCO" kind="relationship" relationship="rootViewController" id="SWF-GV-ELH"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Go-tb-R25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1816" y="-346"/>
         </scene>
     </scenes>
 </document>
