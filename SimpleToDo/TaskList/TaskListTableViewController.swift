@@ -76,7 +76,7 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         present(navigationController, animated: true)
     }
     
-    // MARK: - Core Data stuff
+    // MARK: - CoreData
     func setupCoreData() {
         container.loadPersistentStores { storeDescription, error in
             self.container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
@@ -101,6 +101,7 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         }
     }
     
+    // MARK: - Diffable data source and table view set up
     func setupSnapshot() {
         snapshot = NSDiffableDataSourceSnapshot<Section, Task>()
         snapshot.appendSections([.main])
@@ -134,6 +135,19 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
             
             return cell
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedTask = tasks[indexPath.row]
+        let taskDetailViewController = TaskDetailViewController()
+        
+        let navigationController = UINavigationController(rootViewController: taskDetailViewController)
+        
+        taskDetailViewController.navigationItem.title = selectedTask.title
+        taskDetailViewController.dateLabel.text = "Date completed: \(self.dateFormatter.string(from: selectedTask.date))"
+        taskDetailViewController.taskTitleLabel.text = selectedTask.title
+        
+        present(navigationController, animated: true)
     }
     
     private func updateSnapshotWhenSaving() {
