@@ -26,7 +26,6 @@ class AddTaskItemViewController: UIViewController {
         formatDate()
         loadPersistentContainer()
         setupNavigationController()
-        addSubviews()
         layoutUI()
         configureStaticUI()
     }
@@ -97,19 +96,7 @@ class AddTaskItemViewController: UIViewController {
         
         return self.dateOfTask = dateFormatter.string(from: date)
     }
-    
-    private func addSubviews() {
-        view.addSubview(dateLabel)
-        view.addSubview(taskTitleTextField)
-        view.addSubview(taskCompleteSwitch)
-        view.addSubview(taskCompleteLabel)
-        
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskTitleTextField.translatesAutoresizingMaskIntoConstraints = false
-        taskCompleteSwitch.translatesAutoresizingMaskIntoConstraints = false
-        taskCompleteLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
+
     private func layoutUI() {
         let taskCompleteStackView = UIStackView(arrangedSubviews: [taskCompleteLabel, taskCompleteSwitch])
         taskCompleteStackView.axis = .horizontal
