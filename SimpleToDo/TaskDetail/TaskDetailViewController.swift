@@ -12,12 +12,16 @@ class TaskDetailViewController: UIViewController {
     
     let dateLabel = UILabel()
     let taskTitleLabel = UILabel()
+    let taskCompleteButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         layoutUI()
+        
+        taskCompleteButton.setTitle("Complete task", for: .normal)
+        taskCompleteButton.backgroundColor = UIColor.gray
     }
     
     private func setupNavigationController() {
@@ -35,14 +39,24 @@ class TaskDetailViewController: UIViewController {
         let padding: CGFloat = 8
         
         taskDetailStackView.axis = .vertical
+        taskDetailStackView.distribution = .equalSpacing
         view.addSubview(taskDetailStackView)
         taskDetailStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(taskCompleteButton)
+        taskCompleteButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             taskDetailStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             taskDetailStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            taskDetailStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            taskDetailStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding)
+            taskDetailStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            taskDetailStackView.heightAnchor.constraint(equalToConstant: 50),
+            
+            taskCompleteButton.topAnchor.constraint(equalTo: taskDetailStackView.bottomAnchor, constant: padding),
+            taskCompleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            taskCompleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
+            taskCompleteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            taskCompleteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
