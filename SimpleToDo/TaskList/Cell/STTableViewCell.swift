@@ -12,7 +12,7 @@ class STTableViewCell: UITableViewCell {
     
     static let reuseId = "STTableViewCell"
     
-    let taskTitleTextLabel = UILabel()
+    let taskTitleTextLabel = TaskTitleLabel(fontSize: 20, fontWeight: .bold)
     let taskDateLabel = UILabel()
     let taskStatusIndicatorImageView = UIImageView()
     
