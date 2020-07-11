@@ -50,13 +50,11 @@ class TaskDetailViewController: UIViewController {
             taskDetailStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             taskDetailStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             taskDetailStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            taskDetailStackView.heightAnchor.constraint(equalToConstant: 50),
             
-            taskCompleteButton.topAnchor.constraint(equalTo: taskDetailStackView.bottomAnchor, constant: padding),
             taskCompleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             taskCompleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             taskCompleteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            taskCompleteButton.heightAnchor.constraint(equalToConstant: 50)
+            taskCompleteButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
