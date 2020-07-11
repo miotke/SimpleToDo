@@ -12,8 +12,8 @@ class STTableViewCell: UITableViewCell {
     
     static let reuseId = "STTableViewCell"
     
-    let taskTitleTextLabel = TaskTitleLabel(fontSize: 20, fontWeight: .bold)
-    let taskDateLabel = UILabel()
+    let taskTitleTextLabel = SimpleLabel(fontSize: 20, fontWeight: .bold)
+    let taskDateLabel = SimpleLabel(fontSize: 16, fontWeight: .thin)
     let taskStatusIndicatorImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

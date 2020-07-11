@@ -1,5 +1,5 @@
 //
-//  TaskTitleLabel.swift
+//  SimpleButton.swift
 //  SimpleToDo
 //
 //  Created by Andrew Miotke on 7/11/20.
@@ -8,15 +8,16 @@
 
 import UIKit
 
-class TaskTitleLabel: UILabel {
-    
+class SimpleButton: UIButton {
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    init(fontSize: CGFloat, fontWeight: UIFont.Weight) {
+    init(title: String, backgroundColor: UIColor) {
         super.init(frame: .zero)
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
+        self.setTitle(title, for: .normal)
+        self.backgroundColor = backgroundColor
     }
     
     required init?(coder: NSCoder) {
