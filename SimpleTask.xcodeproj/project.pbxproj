@@ -24,7 +24,7 @@
 /* Begin PBXFileReference section */
 		4C10288424A92E130099023C /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
 		4C15C27D2464FE4500BB6395 /* AddTaskItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskItemViewController.swift; sourceTree = "<group>"; };
-		4C40920C2464F5080035384C /* SimpleToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C40920C2464F5080035384C /* SimpleTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C40920F2464F5080035384C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C4092112464F5080035384C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4C4092132464F5080035384C /* TaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		4C4092032464F5080035384C = {
 			isa = PBXGroup;
 			children = (
-				4C40920E2464F5080035384C /* SimpleToDo */,
+				4C40920E2464F5080035384C /* SimpleTask */,
 				4C40920D2464F5080035384C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,12 +68,12 @@
 		4C40920D2464F5080035384C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C40920C2464F5080035384C /* SimpleToDo.app */,
+				4C40920C2464F5080035384C /* SimpleTask.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C40920E2464F5080035384C /* SimpleToDo */ = {
+		4C40920E2464F5080035384C /* SimpleTask */ = {
 			isa = PBXGroup;
 			children = (
 				4C6A59D424B8C26E00334C7D /* TaskDetail */,
@@ -82,7 +82,7 @@
 				4C4092272464F5A50035384C /* CoreData */,
 				4C4092262464F55B0035384C /* SupportingFiles */,
 			);
-			path = SimpleToDo;
+			path = SimpleTask;
 			sourceTree = "<group>";
 		};
 		4C4092262464F55B0035384C /* SupportingFiles */ = {
@@ -136,9 +136,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C40920B2464F5080035384C /* SimpleToDo */ = {
+		4C40920B2464F5080035384C /* SimpleTask */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C4092232464F5090035384C /* Build configuration list for PBXNativeTarget "SimpleToDo" */;
+			buildConfigurationList = 4C4092232464F5090035384C /* Build configuration list for PBXNativeTarget "SimpleTask" */;
 			buildPhases = (
 				4C4092082464F5080035384C /* Sources */,
 				4C4092092464F5080035384C /* Frameworks */,
@@ -148,9 +148,9 @@
 			);
 			dependencies = (
 			);
-			name = SimpleToDo;
+			name = SimpleTask;
 			productName = SimpleToDo;
-			productReference = 4C40920C2464F5080035384C /* SimpleToDo.app */;
+			productReference = 4C40920C2464F5080035384C /* SimpleTask.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +168,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C4092072464F5080035384C /* Build configuration list for PBXProject "SimpleToDo" */;
+			buildConfigurationList = 4C4092072464F5080035384C /* Build configuration list for PBXProject "SimpleTask" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -181,7 +181,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C40920B2464F5080035384C /* SimpleToDo */,
+				4C40920B2464F5080035384C /* SimpleTask */,
 			);
 		};
 /* End PBXProject section */
@@ -350,13 +350,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3RCM6QHD86;
-				INFOPLIST_FILE = SimpleToDo/SupportingFiles/Info.plist;
+				INFOPLIST_FILE = SimpleTask/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = andrewmiotke.SimpleToDo;
+				PRODUCT_BUNDLE_IDENTIFIER = andrewmiotke.SimpleTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -369,13 +369,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3RCM6QHD86;
-				INFOPLIST_FILE = SimpleToDo/SupportingFiles/Info.plist;
+				INFOPLIST_FILE = SimpleTask/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = andrewmiotke.SimpleToDo;
+				PRODUCT_BUNDLE_IDENTIFIER = andrewmiotke.SimpleTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -385,7 +385,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C4092072464F5080035384C /* Build configuration list for PBXProject "SimpleToDo" */ = {
+		4C4092072464F5080035384C /* Build configuration list for PBXProject "SimpleTask" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C4092212464F5090035384C /* Debug */,
@@ -394,7 +394,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C4092232464F5090035384C /* Build configuration list for PBXNativeTarget "SimpleToDo" */ = {
+		4C4092232464F5090035384C /* Build configuration list for PBXNativeTarget "SimpleTask" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C4092242464F5090035384C /* Debug */,
