@@ -10,18 +10,15 @@ import UIKit
 
 class TaskDetailViewController: UIViewController {
     
-    let dateLabel = UILabel()
+    let dateLabel = SimpleLabel(fontSize: 18, fontWeight: .bold)
     let taskTitleLabel = UILabel()
-    let taskCompleteButton = UIButton()
+    let taskCompleteButton = SimpleButton(title: "Complete task", backgroundColor: .brown)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         layoutUI()
-        
-        taskCompleteButton.setTitle("Complete task", for: .normal)
-        taskCompleteButton.backgroundColor = UIColor.gray
     }
     
     private func setupNavigationController() {
