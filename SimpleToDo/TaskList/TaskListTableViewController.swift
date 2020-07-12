@@ -26,7 +26,7 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
     
     lazy var appDelegateContainer = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var container = NSPersistentContainer(name: "SimpleToDo")
-    var datasource: UITableViewDiffableDataSource<Section, Task>!
+    var dataSource: UITableViewDiffableDataSource<Section, Task>!
     var snapshot = NSDiffableDataSourceSnapshot<Section, Task>()
     var fetchedResultsController: NSFetchedResultsController<Task>!
     
@@ -106,11 +106,11 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         snapshot = NSDiffableDataSourceSnapshot<Section, Task>()
         snapshot.appendSections([.main])
         snapshot.appendItems(fetchedResultsController.fetchedObjects ?? [])
-        datasource?.apply(snapshot)
+        dataSource?.apply(snapshot)
     }
         
     func configureDataSource() {
-        datasource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indexPath, task) -> UITableViewCell in
+        dataSource = UITableViewDiffableDataSource<Section, Task>(tableView: tableView) { ( tableView, indexPath, task) -> UITableViewCell in
             tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: STTableViewCell.reuseId, for: indexPath) as? STTableViewCell else {
@@ -148,6 +148,22 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         taskDetailViewController.taskTitleLabel.text = selectedTask.title
         
         present(navigationController, animated: true)
+    }
+  
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+            print("do some stuff")
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash.fill")
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
     }
     
     private func updateSnapshotWhenSaving() {
