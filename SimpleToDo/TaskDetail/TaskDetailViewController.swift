@@ -24,13 +24,34 @@ class TaskDetailViewController: UIViewController {
         configureButton()
     }
     
-    func configureButton() {
+    private func configureButton() {
+        taskCompleteButton.addTarget(self, action: #selector(completeTaskButtonTapped), for: .touchUpInside)
         switch taskCompleted {
         case true:
             taskCompleteButton.setTitle("Task is complete! 🍻", for: .normal)
             taskCompleteButton.backgroundColor = UIColor.systemGreen
         case false:
             return
+        }
+    }
+    
+    @objc func completeTaskButtonTapped() {
+        switch taskCompleted {
+        case true:
+            dismiss(animated: true)
+        case false:
+            taskCompleteButton.setTitle("Task marked as complete! 🎉", for: .normal)
+            taskCompleteButton.backgroundColor = UIColor.systemPurple
+            delayViewDismissal()
+        }
+    }
+    
+    private func delayViewDismissal() {
+//      This method delays the dismissal of the TaskDetailViewController so that the user
+//      is able to see the change of the button. This gives the user verification that the
+//      complete task change has been made. This happens on the main thread.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.dismiss(animated: true)
         }
     }
     
