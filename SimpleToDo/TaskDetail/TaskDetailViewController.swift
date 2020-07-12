@@ -14,17 +14,61 @@ class TaskDetailViewController: UIViewController {
     let taskTitleLabel = UILabel()
     let taskCompleteButton = SimpleButton(title: "Complete task", backgroundColor: .systemBlue)
     
+    var taskCompleted = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         layoutUI()
+        configureButton()
+    }
+    
+    private func configureButton() {
+        taskCompleteButton.addTarget(self, action: #selector(completeTaskButtonTapped), for: .touchUpInside)
+        switch taskCompleted {
+        case true:
+            taskCompleteButton.setTitle("Task is complete! 🍻", for: .normal)
+            taskCompleteButton.backgroundColor = UIColor.systemGreen
+        case false:
+            return
+        }
+    }
+    
+    @objc func completeTaskButtonTapped() {
+        switch taskCompleted {
+        case true:
+            dismiss(animated: true)
+        case false:
+            taskCompleteButton.setTitle("Task marked as complete! 🎉", for: .normal)
+            taskCompleteButton.backgroundColor = UIColor.systemPurple
+            delayViewDismissal()
+        }
+    }
+    
+    private func delayViewDismissal() {
+//      This method delays the dismissal of the TaskDetailViewController so that the user
+//      is able to see the change of the button. This gives the user verification that the
+//      complete task change has been made. This happens on the main thread.
+//      I really don't know if this is best practice for iOS UI or not.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.dismiss(animated: true)
+        }
     }
     
     private func setupNavigationController() {
+        let trashCan = UIImage(systemName: "trash")
+        
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: trashCan, style: .done, target: self, action: #selector(deleteTask))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.systemRed
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissView))
+    }
+    
+    @objc func deleteTask() {
+        // delete the actual task from CoreData using this method
+        print("Task deleted")
     }
     
     @objc func dismissView() {
