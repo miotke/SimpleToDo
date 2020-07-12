@@ -57,9 +57,18 @@ class TaskDetailViewController: UIViewController {
     }
     
     private func setupNavigationController() {
+        let trashCan = UIImage(systemName: "trash")
+        
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: trashCan, style: .done, target: self, action: #selector(deleteTask))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.systemRed
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissView))
+    }
+    
+    @objc func deleteTask() {
+        // delete the actual task from CoreData using this method
+        print("Task deleted")
     }
     
     @objc func dismissView() {
