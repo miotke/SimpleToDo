@@ -14,11 +14,24 @@ class TaskDetailViewController: UIViewController {
     let taskTitleLabel = UILabel()
     let taskCompleteButton = SimpleButton(title: "Complete task", backgroundColor: .systemBlue)
     
+    var taskCompleted = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         layoutUI()
+        configureButton()
+    }
+    
+    func configureButton() {
+        switch taskCompleted {
+        case true:
+            taskCompleteButton.setTitle("Task is complete! 🍻", for: .normal)
+            taskCompleteButton.backgroundColor = UIColor.systemGreen
+        case false:
+            return
+        }
     }
     
     private func setupNavigationController() {

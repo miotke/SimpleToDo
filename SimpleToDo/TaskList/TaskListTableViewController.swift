@@ -146,6 +146,7 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         taskDetailViewController.navigationItem.title = selectedTask.title
         taskDetailViewController.dateLabel.text = "Date completed: \(self.dateFormatter.string(from: selectedTask.date))"
         taskDetailViewController.taskTitleLabel.text = selectedTask.title
+        taskDetailViewController.taskCompleted = selectedTask.taskCompleted
         
         present(navigationController, animated: true)
     }
