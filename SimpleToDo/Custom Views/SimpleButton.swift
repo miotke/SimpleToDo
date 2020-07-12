@@ -18,6 +18,12 @@ class SimpleButton: UIButton {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
+        
+        configure()
+    }
+    
+    private func configure() {
+        self.layer.cornerRadius = 8
     }
     
     required init?(coder: NSCoder) {

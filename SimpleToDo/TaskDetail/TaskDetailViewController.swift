@@ -12,7 +12,7 @@ class TaskDetailViewController: UIViewController {
     
     let dateLabel = SimpleLabel(fontSize: 18, fontWeight: .bold)
     let taskTitleLabel = UILabel()
-    let taskCompleteButton = SimpleButton(title: "Complete task", backgroundColor: .brown)
+    let taskCompleteButton = SimpleButton(title: "Complete task", backgroundColor: .systemBlue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
