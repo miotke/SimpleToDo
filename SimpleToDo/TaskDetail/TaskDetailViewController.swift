@@ -50,6 +50,7 @@ class TaskDetailViewController: UIViewController {
 //      This method delays the dismissal of the TaskDetailViewController so that the user
 //      is able to see the change of the button. This gives the user verification that the
 //      complete task change has been made. This happens on the main thread.
+//      I really don't know if this is best practice for iOS UI or not.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.dismiss(animated: true)
         }
