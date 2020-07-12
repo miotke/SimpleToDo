@@ -132,7 +132,7 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
                 cell.taskStatusIndicatorImageView.image = UIImage(systemName: "x.circle")
                 cell.taskStatusIndicatorImageView.tintColor = .systemBackground
             }
-            
+                        
             return cell
         }
     }
@@ -147,7 +147,7 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
         taskDetailViewController.dateLabel.text = "Date completed: \(self.dateFormatter.string(from: selectedTask.date))"
         taskDetailViewController.taskTitleLabel.text = selectedTask.title
         taskDetailViewController.taskCompleted = selectedTask.taskCompleted
-        
+
         present(navigationController, animated: true)
     }
   

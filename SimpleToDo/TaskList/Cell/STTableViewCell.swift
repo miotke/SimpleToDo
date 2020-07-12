@@ -19,6 +19,7 @@ class STTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "STTableViewCell")
         
+        selectionStyle = .none
         layoutUI()
     }
     

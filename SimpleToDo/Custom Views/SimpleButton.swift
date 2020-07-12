@@ -24,6 +24,7 @@ class SimpleButton: UIButton {
     
     private func configure() {
         self.layer.cornerRadius = 8
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
     }
     
     required init?(coder: NSCoder) {
