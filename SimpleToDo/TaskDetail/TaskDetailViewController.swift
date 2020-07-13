@@ -69,6 +69,8 @@ class TaskDetailViewController: UIViewController {
     @objc func deleteTask() {
         // delete the actual task from CoreData using this method
         print("Task deleted")
+        
+        
     }
     
     @objc func dismissView() {
