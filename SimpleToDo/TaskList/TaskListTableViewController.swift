@@ -138,33 +138,16 @@ class TaskListTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedTask = tasks[indexPath.row]
+        guard let task = dataSource.itemIdentifier(for: indexPath) else { return }
         let taskDetailViewController = TaskDetailViewController()
-        
         let navigationController = UINavigationController(rootViewController: taskDetailViewController)
-        
-        taskDetailViewController.navigationItem.title = selectedTask.title
-        taskDetailViewController.dateLabel.text = "Date completed: \(self.dateFormatter.string(from: selectedTask.date))"
-        taskDetailViewController.taskTitleLabel.text = selectedTask.title
-        taskDetailViewController.taskCompleted = selectedTask.taskCompleted
+
+        taskDetailViewController.navigationItem.title = task.title
+        taskDetailViewController.dateLabel.text = "Date completed: \(self.dateFormatter.string(from: task.date))"
+        taskDetailViewController.taskTitleLabel.text = task.title
+        taskDetailViewController.taskCompleted = task.taskCompleted
 
         present(navigationController, animated: true)
-    }
-  
-    
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-        let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
-            print("do some stuff")
-            completionHandler(true)
-        }
-        deleteAction.image = UIImage(systemName: "trash.fill")
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configuration
     }
     
     private func updateSnapshotWhenSaving() {
