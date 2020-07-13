@@ -1,5 +1,5 @@
 # SimpleToDo
-`Not complete` `portfolio`
+`Work in Progress` `portfolio`
 
 A todo list iOS app written in Swift and using CoreData.
 
