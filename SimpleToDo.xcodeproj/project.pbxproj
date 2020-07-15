@@ -21,6 +21,7 @@
 		4C6A59D324B8C26200334C7D /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A59D224B8C26200334C7D /* TaskDetailViewController.swift */; };
 		4C896B1B246A0E71007E036E /* TodoItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C896B19246A0E71007E036E /* TodoItem+CoreDataClass.swift */; };
 		4C896B1C246A0E71007E036E /* TodoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C896B1A246A0E71007E036E /* TodoItem+CoreDataProperties.swift */; };
+		4CE515F724BF95C400573D0B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE515F624BF95C400573D0B /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		4C6A59D224B8C26200334C7D /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TaskDetailViewController.swift; path = SimpleToDo/TaskDetail/TaskDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		4C896B19246A0E71007E036E /* TodoItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4C896B1A246A0E71007E036E /* TodoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4CE515F624BF95C400573D0B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		4C40920E2464F5080035384C /* SimpleToDo */ = {
 			isa = PBXGroup;
 			children = (
+				4CE515F524BF95B800573D0B /* Managers */,
 				4C4F618124BA704A00FC7182 /* Custom Views */,
 				4C6A59D424B8C26E00334C7D /* TaskDetail */,
 				4C15C27C2464FE1000BB6395 /* AddTask */,
@@ -145,6 +148,14 @@
 				4C6A59D224B8C26200334C7D /* TaskDetailViewController.swift */,
 			);
 			path = TaskDetail;
+			sourceTree = "<group>";
+		};
+		4CE515F524BF95B800573D0B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4CE515F624BF95C400573D0B /* DataManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 				4C896B1B246A0E71007E036E /* TodoItem+CoreDataClass.swift in Sources */,
 				4C40921A2464F5080035384C /* SimpleToDo.xcdatamodeld in Sources */,
 				4C40922E2464F6270035384C /* STTableViewCell.swift in Sources */,
+				4CE515F724BF95C400573D0B /* DataManager.swift in Sources */,
 				4C4F618724BA853600FC7182 /* SimpleButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
